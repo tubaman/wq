@@ -32,11 +32,11 @@ cd $PROJECTSDIR
 wq-start $PROJECTNAME
 cd $PROJECTNAME
 chmod +x deploy.sh db/manage.py
-./deploy.sh 0.0.1 # generate htdocs folder via wq build
 sudo chown www-data media/ # give Apache user permission to save uploads
 
 # Create database
 # (edit /etc/postgresql/9.3/main/pg_hba.conf and/or pg_ident.conf to set permissions)
+sudo service postgresql restart
 createuser -Upostgres $PROJECTNAME
 createdb -Upostgres -O$PROJECTNAME $PROJECTNAME
 psql -Upostgres $PROJECTNAME -c "CREATE EXTENSION postgis;"
@@ -51,6 +51,9 @@ cd db/
 sudo ln -s $PROJECTSDIR/$PROJECTNAME/conf/$PROJECTNAME.conf /etc/apache2/sites-available/
 sudo a2ensite $PROJECTNAME
 sudo service apache2 restart
+
+# generate htdocs folder via wq build
+./deploy.sh 0.0.1
 ```
 
 ### On Windows
