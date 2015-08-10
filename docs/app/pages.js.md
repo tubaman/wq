@@ -51,9 +51,9 @@ pages.init("/app", {'tmpl404': "notfound"});
 
 `pages.init()` is automatically called from [app.init()].
 
-### `pages.jqmInit()` (new in 0.7.0)
+### `pages.jqmInit()`
 
-The version of jQuery Mobile included with wq.app 0.7.0 is customized to disable automatic initialization on startup.  The purpose of this change is to make it easier to register custom routes before jQuery Mobile starts up, to ensure they are executed when it does.  To start up jQuery mobile, call `pages.jqmInit()` after calling `pages.init()` and registering your custom routes.
+The version of jQuery Mobile included with wq.app is customized to disable automatic initialization on startup.  The purpose of this change is to make it easier to register custom routes before jQuery Mobile starts up, to ensure they are executed when it does.  To start up jQuery mobile, call `pages.jqmInit()` after calling `pages.init()` and registering your custom routes.
 
 `pages.jqmInit()` is automatically called from [app.jqmInit()].
 
@@ -135,13 +135,15 @@ name | purpose
 name | purpose
 -----|---------
 `path` | The path of the current page being rendered (relative to the `base_url`).
-`path_enc` | URL-encoded version of the path for use in e.g. other URLs.  **New in 0.7.1**
-`params` | Any URL query parameters will be available as properties (e.g. "/path?filter=1" will be available as `pages.info.params.filter`).  **New in 0.7.1**
+`path_enc` | URL-encoded version of the path for use in e.g. other URLs.
+`params` | Any URL query parameters will be available as properties (e.g. "/path?filter=1" will be available as `pages.info.params.filter`).
 `base_url` | The root url of the application, as passed to `pages.init()`.
 `full_path` | The root url and the path (concatenated for convenience).
-`full_path_enc` | URL-encoded version of the full path for use in e.g. other URLs.  **New in 0.7.1**
+`full_path_enc` | URL-encoded version of the full path for use in e.g. other URLs.
 `prev_path` | The path of the previous page.
 `context` | The last context object passed to `pages.go()`.  Only available if `debug` is active.
+
+For server rendering, wq.db includes a `router_info` context processor that mimics the client side template variable.
 
 ### `pages.notFound(url)`
 
