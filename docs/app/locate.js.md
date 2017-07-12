@@ -43,10 +43,15 @@ The entered coordinates are automatically displayed on a Leaflet map.  "Accuracy
 
 The Locator widget accepts up to three arguments: a Leaflet map object, a mapping of jQuery-wrapped `fields` to use for setting and storing location information, and an optional `config` object.  The expected `fields` are:
 
- * `toggle`: A set of radio buttons (or a select menu) that will change the widget mode.  The values for each option should be one or more the modes listed above.
- * `latitude`: A text input that will receive (or provide) the latitude
- * `longitude`: A text input that will receive (or provide) the longitude
- * `accuracy`: A text input that will receive the computed accuracy
+
+field name | purpose
+-----------|------------------------
+`latitude` | A text input that will receive (or provide) the latitude
+`longitude` | A text input that will receive (or provide) the longitude
+`accuracy` | A text input that will receive the computed accuracy
+`toggle` | A set of radio buttons (or a select menu) that will change the widget mode.  The values for each option should be one or more of the modes listed above.
+`mode` | A hidden input that will receive the selected mode (in the case where toggle field is not used or is not saved)
+`source` | A text input that will recieve information about the source of the GPS coordinate, if known.  (For use with `"gps"` mode in PhoneGap/Cordova applications with [cordova-plugin-bluetooth-geolocation] installed).
 
 If specified, the locator `config` option should have up to three callback functions that will be executed at various points in the process:
 
@@ -222,3 +227,4 @@ function success(evt) {
 [wq/locate.js]: https://github.com/wq/wq.app/blob/master/js/wq/locate.js
 [AMD]: https://wq.io/docs/amd
 [L.Map.locate()]: http://leafletjs.com/reference.html#map-locate-options
+[cordova-plugin-bluetooth-geolocation]: https://github.com/heigeo/cordova-plugin-bluetooth-geolocation
